@@ -12,6 +12,12 @@ namespace WordFinderResolver.Service
         { 
             _wordFinderFactory = wordFinderFactory;
         }
+
+        /// <summary>
+        /// Receives a MatrixColecctionDto and returns the first 10 most occurring words in the matrix.
+        /// </summary>
+        /// <param name="MatrixColecctionDto">dto with matrix and array with searching words.</param>
+        /// <returns>List of the 10 most frequent words in the matrix ordered from highest to lowest</returns>
         public async Task<IEnumerable<string>> Resolve(MatrixColecctionDto dto) 
         {
             try
@@ -20,7 +26,7 @@ namespace WordFinderResolver.Service
 
                 var wordFinder = _wordFinderFactory.CreateWordFinder(matrixList);
 
-                throw new NotImplementedException();
+                return wordFinder.Find(dto.Words);
             }
             catch (Exception) 
             {
@@ -29,6 +35,11 @@ namespace WordFinderResolver.Service
 
         }
 
+        /// <summary>
+        /// Receives an array and returns a list of strings consisting of each row and column.
+        /// </summary>
+        /// <param name="matrix">matrix of string to analize.</param>
+        /// <returns>IEnumerable list of string from matrix</returns>
         private Task<IEnumerable<string>> ConvertMatrixToEnumerable(string[,] matrix)
         {
             List<string> result = new List<string>();
