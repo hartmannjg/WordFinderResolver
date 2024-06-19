@@ -1,0 +1,6 @@
+@WordFinderResolver_HostAddress = http://localhost:5256
+
+GET {{WordFinderResolver_HostAddress}}/WordFinder/
+Accept: application/json
+
+###
