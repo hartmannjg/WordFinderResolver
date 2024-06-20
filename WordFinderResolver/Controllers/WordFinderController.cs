@@ -18,9 +18,19 @@ namespace WordFinderResolver.Controllers
         }
 
         [HttpGet(Name = "GetResult")]
-        public async Task<IEnumerable<string>> Get([FromBody] MatrixColecctionDto dto)
+        public async Task<ActionResult<IEnumerable<string>>> Get([FromBody] MatrixColecctionDto dto)
         {
-            return await _wordFinderService.Resolve(dto);
+            try
+            {
+                var result = await _wordFinderService.Resolve(dto);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "An error occurred while resolving the matrix collection");
+                return StatusCode(500, new { Message = "An error occurred while processing your request.", Details = ex.Message });
+            }
+
         }
     }
 }

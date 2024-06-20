@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Moq;
 using WordFinderResolver.Controllers;
@@ -25,6 +26,9 @@ namespace WordFinderResolverTest
         [Test]
         public void TestThreeMatchOrderWrods()
         {
+            // Arrange
+            var expectedData = new List<string> { "ABC", "ADG", "DEF" };
+
             // Preparing request
             var dto = new MatrixColecctionDto()
             {
@@ -43,18 +47,25 @@ namespace WordFinderResolverTest
             var result = _controller.Get(dto);
 
             // Assert
-            Assert.IsInstanceOf<IEnumerable<string>>(result.Result);
-            var okResult = result.Result.ToList();
+            Assert.IsInstanceOf<OkObjectResult>(result.Result.Result);
+            var okResult = result.Result.Result as OkObjectResult;
             Assert.IsNotNull(okResult);
+            Assert.AreEqual(200, okResult.StatusCode);
 
-            Assert.AreEqual("ABC", okResult[0]);
-            Assert.AreEqual("ADG", okResult[1]);
-            Assert.AreEqual("DEF", okResult[2]);
+            var actualData = okResult.Value as IEnumerable<string>;
+            Assert.That(actualData, Is.Not.Null);
+
+            Assert.That(actualData, Has.Exactly(expectedData.Count).Items);
+
+            Assert.That(actualData, Is.EqualTo(expectedData).AsCollection);
         }
 
         [Test]
         public void TestLenghtMatrixError()
         {
+            // Arrange
+            var exceptionMessage = "{ Message = An error occurred while processing your request., Details = Wrong size of the matrix }";
+
             // Preparing request
             var dto = new MatrixColecctionDto()
             {
@@ -71,14 +82,22 @@ namespace WordFinderResolverTest
             // GetWords
             var result = _controller.Get(dto);
 
-
             // Assert
-            Assert.AreEqual("Wrong size of the matrix", result.Exception.InnerException.Message);
+            Assert.That(result.Result.Result, Is.InstanceOf<ObjectResult>());
+            var objectResult = result.Result.Result as ObjectResult;
+            Assert.That(objectResult, Is.Not.Null);
+            Assert.That(objectResult.StatusCode, Is.EqualTo(500));
+
+            var errorResponse = objectResult.Value;
+            Assert.That(errorResponse?.ToString(), Is.EqualTo(exceptionMessage));
         }
 
         [Test]
         public void ChallengeTest()
         {
+            // Arrange
+            var expectedData = new List<string> { "cold", "wind", "chill" };
+
             // Preparing request
             var dto = new MatrixColecctionDto()
             {
@@ -98,18 +117,25 @@ namespace WordFinderResolverTest
             var result = _controller.Get(dto);
 
             // Assert
-            Assert.IsInstanceOf<IEnumerable<string>>(result.Result);
-            var okResult = result.Result.ToList();
+            Assert.IsInstanceOf<OkObjectResult>(result.Result.Result);
+            var okResult = result.Result.Result as OkObjectResult;
             Assert.IsNotNull(okResult);
+            Assert.AreEqual(200, okResult.StatusCode);
 
-            Assert.AreEqual("cold", okResult[0]);
-            Assert.AreEqual("wind", okResult[1]);
-            Assert.AreEqual("chill", okResult[2]);
+            var actualData = okResult.Value as IEnumerable<string>;
+            Assert.That(actualData, Is.Not.Null);
+
+            Assert.That(actualData, Has.Exactly(expectedData.Count).Items);
+
+            Assert.That(actualData, Is.EqualTo(expectedData).AsCollection);
         }
 
         [Test]
         public void ChallengeTestRandomRepetitions()
         {
+            // Arrange
+            var expectedData = new List<string> { "chill", "cold", "wind" };
+
             // Preparing request
             var dto = new MatrixColecctionDto()
             {
@@ -134,14 +160,18 @@ namespace WordFinderResolverTest
             var result = _controller.Get(dto);
 
             // Assert
-            Assert.IsInstanceOf<IEnumerable<string>>(result.Result);
-            var okResult = result.Result.ToList();
+            Assert.IsInstanceOf<OkObjectResult>(result.Result.Result);
+            var okResult = result.Result.Result as OkObjectResult;
             Assert.IsNotNull(okResult);
+            Assert.AreEqual(200, okResult.StatusCode);
 
-            Assert.AreEqual("chill", okResult[0]);
-            Assert.AreEqual("cold", okResult[1]);
-            Assert.AreEqual("wind", okResult[2]);
-            
+            var actualData = okResult.Value as IEnumerable<string>;
+            Assert.That(actualData, Is.Not.Null);
+
+            Assert.That(actualData, Has.Exactly(expectedData.Count).Items);
+
+            Assert.That(actualData, Is.EqualTo(expectedData).AsCollection);
+
         }
     }
 }
