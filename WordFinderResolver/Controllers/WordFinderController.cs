@@ -5,7 +5,7 @@ using WordFinderResolver.Service;
 namespace WordFinderResolver.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class WordFinderController : ControllerBase
     {
         private readonly WordFinderService _wordFinderService;
@@ -17,8 +17,8 @@ namespace WordFinderResolver.Controllers
             _wordFinderService = wordFinderService;
         }
 
-        [HttpGet(Name = "GetResult")]
-        public async Task<ActionResult<IEnumerable<string>>> Get([FromBody] MatrixColecctionDto dto)
+        [HttpPost("find")]
+        public async Task<ActionResult<IEnumerable<string>>> Find([FromBody] MatrixColecctionDto dto)
         {
             try
             {

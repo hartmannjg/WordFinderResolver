@@ -44,7 +44,7 @@ namespace WordFinderResolverTest
             };
 
             // GetWords
-            var result = _controller.Get(dto);
+            var result = _controller.Find(dto);
 
             // Assert
             Assert.IsInstanceOf<OkObjectResult>(result.Result.Result);
@@ -80,7 +80,7 @@ namespace WordFinderResolverTest
             };
 
             // GetWords
-            var result = _controller.Get(dto);
+            var result = _controller.Find(dto);
 
             // Assert
             Assert.That(result.Result.Result, Is.InstanceOf<ObjectResult>());
@@ -114,7 +114,7 @@ namespace WordFinderResolverTest
             };
 
             // GetWords
-            var result = _controller.Get(dto);
+            var result = _controller.Find(dto);
 
             // Assert
             Assert.IsInstanceOf<OkObjectResult>(result.Result.Result);
@@ -157,7 +157,7 @@ namespace WordFinderResolverTest
             };
 
             // GetWords
-            var result = _controller.Get(dto);
+            var result = _controller.Find(dto);
 
             // Assert
             Assert.IsInstanceOf<OkObjectResult>(result.Result.Result);
