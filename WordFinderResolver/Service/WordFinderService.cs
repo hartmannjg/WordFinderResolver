@@ -40,12 +40,12 @@ namespace WordFinderResolver.Service
         /// </summary>
         /// <param name="matrix">matrix of string to analize.</param>
         /// <returns>IEnumerable list of string from matrix</returns>
-        private Task<IEnumerable<string>> ConvertMatrixToEnumerable(string[,] matrix)
+        private Task<IEnumerable<string>> ConvertMatrixToEnumerable(string[][] matrix)
         {
             List<string> result = new List<string>();
 
             int rowCount = matrix.GetLength(0);
-            int colCount = matrix.GetLength(1);
+            int colCount = matrix.Length > 0 ? matrix[0].GetLength(0) : 0;
 
             //Add words from rows
             for (int i = 0; i < rowCount; i++)
@@ -53,7 +53,7 @@ namespace WordFinderResolver.Service
                 string wordResult = "";
                 for (int j = 0; j < colCount; j++)
                 {
-                    wordResult += matrix[i, j];
+                    wordResult += matrix[i][j];
                 }
                 result.Add(wordResult);
             }
@@ -64,7 +64,7 @@ namespace WordFinderResolver.Service
                 string wordResult = "";
                 for (int i = 0; i < rowCount; i++)
                 {
-                    wordResult += matrix[i, j];
+                    wordResult += matrix[i][j];
                 }
                 result.Add(wordResult);
             }

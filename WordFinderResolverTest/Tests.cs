@@ -32,13 +32,13 @@ namespace WordFinderResolverTest
             // Preparing request
             var dto = new MatrixColecctionDto()
             {
-                Matrix = new string[,]
+                Matrix = new string[][]
                 {
-                    { "A", "B", "C", "A" },
-                    { "A", "B", "C", "B"},
-                    { "D", "E", "F", "C" },
-                    { "G", "A", "B", "C" },
-                    { "O", "A", "D", "G" }
+                    new string[] { "A", "B", "C", "A" },
+                    new string[] { "A", "B", "C", "B"},
+                    new string[] { "D", "E", "F", "C" },
+                    new string[] { "G", "A", "B", "C" },
+                    new string[] { "O", "A", "D", "G" }
                 }, 
                 Words = new List<string>() { "ADG", "DEF", "CGI", "ABC" }
             };
@@ -69,12 +69,12 @@ namespace WordFinderResolverTest
             // Preparing request
             var dto = new MatrixColecctionDto()
             {
-                Matrix = new string[,]
+                Matrix = new string[][]
                 {
-                    { "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A" },
-                    { "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A" },
-                    { "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A" },
-                    { "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A" }
+                    new string[] { "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A" },
+                    new string[] { "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A" },
+                    new string[] { "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A" },
+                    new string[] { "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A", "A", "B", "C", "A" }
                 },
                 Words = new List<string>() { "ADG", "DEF", "CGI", "ABC" }
             };
@@ -101,13 +101,13 @@ namespace WordFinderResolverTest
             // Preparing request
             var dto = new MatrixColecctionDto()
             {
-                Matrix = new string[,]
+                Matrix = new string[][]
                 {
-                    { "a", "b", "c", "d", "c" },
-                    { "r", "g", "w", "i", "o" },
-                    { "c", "h", "i", "l", "l" },
-                    { "p", "q", "n", "s", "d" },
-                    { "u", "v", "d", "x", "y" }
+                    new string[]  { "a", "b", "c", "d", "c" },
+                    new string[] { "r", "g", "w", "i", "o" },
+                    new string[] { "c", "h", "i", "l", "l" },
+                    new string[]  { "p", "q", "n", "s", "d" },
+                    new string[]  { "u", "v", "d", "x", "y" }
 
                 },
                 Words = new List<string>() { "cold", "wind", "snow", "chill" }
@@ -139,18 +139,18 @@ namespace WordFinderResolverTest
             // Preparing request
             var dto = new MatrixColecctionDto()
             {
-                Matrix = new string[,]
+                Matrix = new string[][]
                 {
-                    { "a", "b", "c", "d", "c", "a", "b", "c", "o", "l", "d" },
-                    { "r", "g", "w", "i", "o", "c", "h", "i", "l", "l", "d" },
-                    { "c", "h", "i", "l", "l",  "a", "b", "w", "i", "n", "d"},
-                    { "p", "q", "n", "s", "d" , "w", "i", "n", "d", "d", "d"},
-                    { "u", "v", "d", "x", "y", "c", "h", "x", "l", "l", "d" },
-                    { "a", "b", "c", "d", "c", "c", "h", "d", "l", "l", "d" },
-                    { "r", "g", "w", "i", "o", "c", "h", "i", "l", "l", "d" },
-                    { "c", "h", "i", "l", "l", "d", "c", "h", "i", "l", "l" },
-                    { "p", "q", "n", "s", "d", "c", "o", "l", "d", "d", "g" },
-                    { "u", "v", "d", "x", "y", "c", "h", "i", "l", "l", "g" }
+                    new string[] { "a", "b", "c", "d", "c", "a", "b", "c", "o", "l", "d" },
+                    new string[] { "r", "g", "w", "i", "o", "c", "h", "i", "l", "l", "d" },
+                    new string[] { "c", "h", "i", "l", "l",  "a", "b", "w", "i", "n", "d"},
+                    new string[] { "p", "q", "n", "s", "d" , "w", "i", "n", "d", "d", "d"},
+                    new string[] { "u", "v", "d", "x", "y", "c", "h", "x", "l", "l", "d" },
+                    new string[] { "a", "b", "c", "d", "c", "c", "h", "d", "l", "l", "d" },
+                    new string[] { "r", "g", "w", "i", "o", "c", "h", "i", "l", "l", "d" },
+                    new string[] { "c", "h", "i", "l", "l", "d", "c", "h", "i", "l", "l" },
+                    new string[] { "p", "q", "n", "s", "d", "c", "o", "l", "d", "d", "g" },
+                    new string[] { "u", "v", "d", "x", "y", "c", "h", "i", "l", "l", "g" }
 
                 },
                 Words = new List<string>() { "cold", "wind", "snow", "chill" }

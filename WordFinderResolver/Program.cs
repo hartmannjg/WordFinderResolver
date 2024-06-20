@@ -8,7 +8,9 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddScoped<WordFinderFactory>();
 builder.Services.AddSingleton<IWordFinderFactory, WordFinderFactory>();
+builder.Services.AddScoped<WordFinderService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

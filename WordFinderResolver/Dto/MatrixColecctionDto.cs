@@ -5,7 +5,7 @@ namespace WordFinderResolver.Dto
     public class MatrixColecctionDto
     {
         [JsonPropertyName("matrix")]
-        public string[,] Matrix { get; set; }
+        public string[][] Matrix { get; set; }
 
         [JsonPropertyName("words")]
         public IEnumerable<string> Words { get; set; }
