@@ -4,6 +4,8 @@ using Moq;
 using WordFinderResolver.Controllers;
 using WordFinderResolver.Dto;
 using WordFinderResolver.Service;
+using WordFinderResolver.Service.Validations.Chains;
+using WordFinderResolver.Service.Validations.Rules;
 
 namespace WordFinderResolverTest
 {
@@ -13,13 +15,18 @@ namespace WordFinderResolverTest
         private Mock<ILogger<WordFinderController>> _loggerMock;
         private Mock<WordFinderService> _wordFinderServiceMock;
         private Mock<WordFinderFactory> _wordFinderFactoryMock;
+        private Mock<MatrixValidationsChains> _matrixValidationsChainsMock;
+        private Mock<MatrixLengthValidation> _matrixLengthValidationMock;
 
         [SetUp]
         public void Setup()
         {
             _loggerMock = new Mock<ILogger<WordFinderController>>();
             _wordFinderFactoryMock = new Mock<WordFinderFactory>();
-            _wordFinderServiceMock = new Mock<WordFinderService>(_wordFinderFactoryMock.Object);
+            _matrixLengthValidationMock = new Mock<MatrixLengthValidation>();
+            _matrixLengthValidationMock.CallBase = true;
+            _matrixValidationsChainsMock = new Mock<MatrixValidationsChains>(_matrixLengthValidationMock.Object);
+            _wordFinderServiceMock = new Mock<WordFinderService>(_wordFinderFactoryMock.Object, _matrixValidationsChainsMock.Object);
             _controller = new WordFinderController(_loggerMock.Object, _wordFinderServiceMock.Object);
         }
 

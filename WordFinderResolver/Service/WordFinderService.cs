@@ -1,16 +1,19 @@
 ﻿using System.Net;
 using System.Security;
 using WordFinderResolver.Dto;
+using WordFinderResolver.Service.Validations.Chains;
 
 namespace WordFinderResolver.Service
 {
     public class WordFinderService
     {
         private readonly WordFinderFactory _wordFinderFactory;
+        private readonly MatrixValidationsChains _matrixValidationsChains;
 
-        public WordFinderService(WordFinderFactory wordFinderFactory) 
+        public WordFinderService(WordFinderFactory wordFinderFactory, MatrixValidationsChains matrixValidationsChains) 
         { 
             _wordFinderFactory = wordFinderFactory;
+            _matrixValidationsChains = matrixValidationsChains;
         }
 
         /// <summary>
@@ -22,6 +25,8 @@ namespace WordFinderResolver.Service
         {
             try
             {
+                _matrixValidationsChains.GetValidations().Validate(dto);
+
                 var matrixList = await ConvertMatrixToEnumerable(dto.Matrix);
 
                 var wordFinder = _wordFinderFactory.CreateWordFinder(matrixList);

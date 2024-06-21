@@ -1,4 +1,6 @@
 using WordFinderResolver.Service;
+using WordFinderResolver.Service.Validations.Chains;
+using WordFinderResolver.Service.Validations.Rules;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +13,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<WordFinderFactory>();
 builder.Services.AddSingleton<IWordFinderFactory, WordFinderFactory>();
 builder.Services.AddScoped<WordFinderService>();
+builder.Services.AddScoped<MatrixLengthValidation>();
+builder.Services.AddScoped<MatrixValidationsChains>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
