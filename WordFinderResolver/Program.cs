@@ -14,6 +14,7 @@ builder.Services.AddScoped<WordFinderFactory>();
 builder.Services.AddSingleton<IWordFinderFactory, WordFinderFactory>();
 builder.Services.AddScoped<WordFinderService>();
 builder.Services.AddScoped<MatrixLengthValidation>();
+builder.Services.AddScoped<MatrixSquareValidation>();
 builder.Services.AddScoped<MatrixValidationsChains>();
 var app = builder.Build();
 
